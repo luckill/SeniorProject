@@ -1,8 +1,6 @@
 package com.example.SeniorProject.Controller;
 
-import com.example.SeniorProject.Model.Account;
-import com.example.SeniorProject.Model.AccountRepository;
-import com.example.SeniorProject.Model.Customer;
+import com.example.SeniorProject.Model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

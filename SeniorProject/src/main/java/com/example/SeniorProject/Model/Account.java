@@ -1,15 +1,19 @@
 package com.example.SeniorProject.Model;
 
-import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.security.core.*;
+import org.springframework.security.core.userdetails.*;
 
 import javax.validation.constraints.*;
+import java.util.*;
+import com.example.SeniorProject.Model.Customer;
+
 
 @Entity
 @Table(name = "account")
-public class Account
+public class Account implements UserDetails
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,11 +58,6 @@ public class Account
         this.email = email;
     }
 
-    public Customer getCustomer()
-    {
-        return customer;
-    }
-
     public boolean isAdmin()
     {
         return isAdmin;
@@ -67,6 +66,12 @@ public class Account
     public void setAdmin(boolean admin) 
     {
         isAdmin = admin;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities()
+    {
+        return List.of();
     }
 
     public String getPassword()
@@ -82,5 +87,35 @@ public class Account
     public int getId()
     {
         return id;
+    }
+
+    @Override
+    public String getUsername()
+    {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired()
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked()
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled()
+    {
+        return true;
     }
 }

@@ -2,25 +2,26 @@ package com.example.SeniorProject.Controller;
 
 import com.example.SeniorProject.Email.*;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.parser.Entity;
 import java.util.HashMap;
-
+@RequestMapping("email")
 @RestController
 public class EmailController
 {
-    @Autowired
-    private EmailService emailService;
+    private final EmailService emailService;
 
     private HashMap<String,String> emailMap = new HashMap<>();
 
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    public EmailController(EmailService emailService)
+    {
+        this.emailService = emailService;
+    }
 
     @PostMapping("/sendEmail")
     public String sendEmail(@RequestBody EmailDetails details)
@@ -57,9 +58,8 @@ public class EmailController
         }
 
         // Constructing the verification URL with the token
-        //String verificationUrl = "http://localhost:8080/verify-email?token=" + token;
 
-        String verificationUrl = "http://" + request.getServerName() + ":" + request.getServerPort()  + "/verify-email?token=" + token;
+        String verificationUrl = "http://" + request.getServerName() + "/email/verify-email?token=" + token;
 
         // Creating the email details
         EmailDetails details = new EmailDetails();
