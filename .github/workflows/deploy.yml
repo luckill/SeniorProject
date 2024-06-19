@@ -20,7 +20,6 @@ jobs:
       - name: Navigate to app folder, clean and package Maven build
         run: |
           cd SeniorProject
-          mvn clean
           mvn package
       - name: Upload JAR
         uses: actions/upload-artifact@v2
