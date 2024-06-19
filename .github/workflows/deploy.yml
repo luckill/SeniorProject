@@ -15,6 +15,7 @@ jobs:
       - name: Set up JDK 
         uses: actions/setup-java@v2
         with:
+          distribution: 'openjdk'
           java-version: '17'
       - name: Navigate to app folder, clean and package Maven build
         run: |
