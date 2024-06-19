@@ -15,7 +15,7 @@ jobs:
       - name: Set up JDK 
         uses: actions/setup-java@v2
         with:
-          distribution: 'Corretto'
+          distribution: 'temurin'
           java-version: '17'
       - name: Navigate to app folder, clean and package Maven build
         run: |
