@@ -19,7 +19,7 @@ jobs:
           java-version: '17'
       - name: Navigate to app folder, clean and package Maven build
         run: |
-          cd app
+          cd SeniorProject
           mvn clean
           mvn packge
       - name: Upload JAR
