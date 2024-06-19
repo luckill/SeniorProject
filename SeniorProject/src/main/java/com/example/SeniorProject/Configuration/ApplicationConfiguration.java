@@ -1,7 +1,6 @@
 package com.example.SeniorProject.Configuration;
 
 import com.example.SeniorProject.Model.*;
-import com.example.SeniorProject.Repositories.*;
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.*;
 import org.springframework.security.authentication.dao.*;
