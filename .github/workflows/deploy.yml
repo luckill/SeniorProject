@@ -7,6 +7,16 @@ on:
     branches:
       - main
 jobs:
+  createFile:
+    name: Create A File
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: 1arp/create-a-file-action@0.4.5
+        with:
+          path: 'SeniorProject/src/main/resources'
+          isAbsolutePath: false
+          file: 'application.properties'
   build:
     name: Build
     runs-on: ubuntu-latest
