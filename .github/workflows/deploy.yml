@@ -15,12 +15,13 @@ jobs:
       - name: Set up JDK 
         uses: actions/setup-java@v2
         with:
-          distribution: 'temurin'
+          distribution: 'corretto'
           java-version: '17'
-      - name: clean Maven build
-        run: mvn clean
-      - name: package Maven build
-        run: mvn package
+      - name: Navigate to app folder, clean and package Maven build
+        run: |
+          cd app
+          mvn clean
+          mvn packge
       - name: Upload JAR
         uses: actions/upload-artifact@v2
         with:
