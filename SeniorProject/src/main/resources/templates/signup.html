@@ -17,8 +17,8 @@
     <input id="firstName" name="firstName" class="myinput" type="text" placeholder="Enter your First Name" required>
     <label for="lastName">Last Name</label>
     <input id="lastName" name="lastName" class="myinput" type="text" placeholder="Enter your Last Name" required>
-    <label for="phone">Phone number</label>
-    <input id="phone" name="phone" class="myinput" type="text" placeholder="Enter your phone number" required>
+    <label for="phoneNumber">Phone number</label>
+    <input id="phoneNumber" name="phoneNumber" class="myinput" type="text" placeholder="Enter your phone number" required>
     <label for="email">Email</label>
     <input id="email" name="email" class="myinput" type="email" placeholder="Enter your Email" required>
     <label for="confirmEmail">Confirm Email</label>
@@ -100,7 +100,7 @@
         {
             document.getElementById('error').innerText = "";
             event.preventDefault();
-            fetch('/customer/signup',
+            fetch('/auth/signup',
                 {
                     method: 'POST',
                     headers:

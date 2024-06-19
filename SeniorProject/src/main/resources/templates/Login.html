@@ -17,10 +17,10 @@
         <input class="myinput" type="password" id="password" name="password" placeholder="Enter your password">
         <button type="submit" class="btn btn-primary">LOGIN</button>
         <a class="link" href="/forgetPassword">Forget password?</a>
-        <a class="link" href="/signUp">New user? Sign up here</a>
+        <a class="link" href="/signup">New user? Sign up here</a>
+        <p id = "successMessage" style="display: none; color: white" >Success!!</p>
+        <P id = "errorMessage" style="display: none; color: white;">the password you entered is not correct</P>
     </form>
-    <p id = "successMessage" style="display: none; color: white" >Success!!</p>
-    <P id = "errorMessage" style="display: none; color: white;">the password you entered is not correct</P>
     <script>
         document.getElementById('myForm').addEventListener('submit', function(event)
         {
@@ -34,7 +34,7 @@
             // Convert JavaScript object to JSON string
             const jsonBody = JSON.stringify(formDataObj);
             console.log(jsonBody);
-            fetch('/customer/login',
+            fetch('/auth/login',
                 {
                     method: 'POST',
                     headers:
@@ -47,7 +47,9 @@
             {
                 if (response.status === 200)
                 {
+                    console.log(response.body)
                     window.location.href = '/';
+                    console.log("login successful")
                 } 
                 else if(response.status === 401)
                 {
