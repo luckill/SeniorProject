@@ -11,7 +11,7 @@ jobs:
     name: Create a file
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: 1arp/create-a-file-action@0.4.5
         with:
           path: 'SeniorProject/src/main/resources'
@@ -22,7 +22,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up JDK 
         uses: actions/setup-java@v2
         with:
@@ -53,7 +53,7 @@ jobs:
           pwd
           ls -l
       - name: Upload JAR
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: artifact
           path: SeniorProject/target/SeniorProject-0.0.1-SNAPSHOT.jar
@@ -63,7 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download JAR
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: artifact
       - name: Deploy to EB
