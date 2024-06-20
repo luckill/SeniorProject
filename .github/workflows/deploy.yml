@@ -50,6 +50,8 @@ jobs:
         run: |
           cd SeniorProject
           mvn clean install
+          pwd
+          ls -l
       - name: Upload JAR
         uses: actions/upload-artifact@v2
         with:
