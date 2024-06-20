@@ -30,6 +30,12 @@ jobs:
           java-version: '17'
       - name: Inject secrets into application.properties
         run: |
+          echo "spring.mail.host=smtp.gmail.com" >> SeniorProject/src/main/resources/application.properties
+          echo "spring.mail.port=587" >> SeniorProject/src/main/resources/application.properties
+          echo "spring.mail.username=${{ secrets.EMAIL_USERNAME }}" >> SeniorProject/src/main/resources/application.properties
+          echo "spring.mail.password=${{ secrets.EMAIL_PASSWORD }}" >> SeniorProject/src/main/resources/application.properties
+          echo "spring.mail.properties.mail.smtp.auth=true" >> SeniorProject/src/main/resources/application.properties
+          echo "spring.mail.properties.mail.smtp.starttls.enable=true" >> SeniorProject/src/main/resources/application.properties
           echo "spring.jpa.hibernate.ddl-auto=update" >> SeniorProject/src/main/resources/application.properties
           echo "spring.datasource.url=${{ secrets.DB_URL }}" >> SeniorProject/src/main/resources/application.properties
           echo "spring.datasource.username=${{ secrets.DB_USERNAME }}" >> SeniorProject/src/main/resources/application.properties
@@ -49,7 +55,6 @@ jobs:
         with:
           name: artifact
           path: target/SeniorProject-0.0.1-SNAPSHOT.jar
-
   deploy:
     needs: build
     name: Deploy
