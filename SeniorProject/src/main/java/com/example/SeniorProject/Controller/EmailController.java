@@ -8,7 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-@RequestMapping("email")
+@RequestMapping("/email")
 @RestController
 public class EmailController
 {
