@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v4.2.1
         with:
           distribution: 'temurin'
           java-version: '17'
@@ -50,8 +50,6 @@ jobs:
         run: |
           cd SeniorProject
           mvn clean install
-          pwd
-          ls -l
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
@@ -67,7 +65,7 @@ jobs:
         with:
           name: artifact
       - name: Deploy to EB
-        uses: einaregilsson/beanstalk-deploy@v20
+        uses: einaregilsson/beanstalk-deploy@v22
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
