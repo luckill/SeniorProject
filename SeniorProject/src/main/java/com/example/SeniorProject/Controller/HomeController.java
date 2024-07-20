@@ -1,5 +1,6 @@
 package com.example.SeniorProject.Controller;
 
+import org.springframework.http.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,14 +30,22 @@ public class HomeController
     {
         return "about";
     }
+
     @GetMapping("/faq")
     public String faq()
     {
         return "faq";
     }
+
     @GetMapping("/gallery")
     public String gallery()
     {
         return "gallery";
+    }
+
+    @GetMapping("/healthcheck")
+    public ResponseEntity<?> performHealthCheck()
+    {
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
