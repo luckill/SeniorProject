@@ -71,7 +71,7 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           use_existing_version_if_available: false
           application_name: luxpartyrents
-          environment_name: Luxpartyrents-env
+          environment_name: luxpartyrents-env
           version_label: ${{ github.sha }}
           region: us-west-1
           deployment_package: SeniorProject-0.0.1-SNAPSHOT.jar
