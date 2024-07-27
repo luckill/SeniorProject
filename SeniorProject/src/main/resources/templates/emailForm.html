@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="forgetPassword.css">
+</head>
+<body>
+<div class="container mt-3">
+    <form id="emailVerificationForm">
+        <h1>Reset your Password</h1>
+        <p>Enter a valid email address and we will send you a create account link. </p>
+        <label for="email">Email:</label>
+        <input class="myinput" type="email" id="email" name="email" placeholder="Enter your Email" required>
+        <button type="submit" class="btn btn-primary">submit</button>
+        <div id="error" style="color: white; text-decoration-style: solid; padding-top: 0.7em"></div>
+    </form>
+
+</div>
+<script>
+    function checkAccountByEmail()
+    {
+        const formData = new FormData();
+        let email = document.getElementById("email").value
+        formData.append('email', email);
+        fetch('/customer/findAccount', {
+            method: 'POST',
+            body: formData
+        })
+            .then(function(response)
+            {
+                if (response.status === 200)
+                {
+                    window.location.href = '/login';
+                }
+                else if(response.status === 404)
+                {
+                    window.location.href = '/signup';
+                }
+                else
+                {
+                    console.error("something went wrong")
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    document.getElementById('emailVerificationForm').addEventListener('submit', function(event)
+    {
+        event.preventDefault();
+        const formData = new FormData();
+        let email = document.getElementById("email").value
+        formData.append('email', email);
+        fetch('/customer/findAccount', {
+            method: 'POST',
+            body: formData
+        })
+        .then(function(response)
+        {
+            if (response.status === 200)
+            {
+                window.location.href = '/login';
+            }
+            else if(response.status === 404)
+            {
+                window.location.href = '/signup';
+            }
+            else
+            {
+                console.error("something went wrong")
+            }
+        })
+        .catch(error => {
+           console.error('Error:', error);
+        });
+    });
+</script>
+</body>
+</html>
