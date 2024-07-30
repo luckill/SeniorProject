@@ -74,7 +74,7 @@ public class EmailController
 
         // Constructing the verification URL with the token
 
-        String verificationUrl = "https://" + request.getServerName() + ":" + request.getServerPort() + "/email/verify-email?token=" + token;
+        String verificationUrl = "https://" + request.getServerName() + "/email/verify-email?token=" + token;
 
         // Creating the email details
         EmailDetails details = new EmailDetails();
