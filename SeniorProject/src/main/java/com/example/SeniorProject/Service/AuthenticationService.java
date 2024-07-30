@@ -23,7 +23,7 @@ public class AuthenticationService
         this.authenticationManager = authenticationManager;
     }
 
-    public Customer signUp(RegisterUserDTO input)
+    public void signUp(RegisterUserDTO input)
     {
         if (accountRepository.findAccountByEmail(input.getEmail()) != null )
         {
@@ -33,7 +33,7 @@ public class AuthenticationService
         Account account = new Account(input.getEmail(), passwordEncoder.encode(input.getPassword()), false);
         accountRepository.save(account);
         customer.setAccount(account);
-        return customerRepository.save(customer);
+        customerRepository.save(customer);
     }
 
     public Account authenticate(LoginUserDto input)

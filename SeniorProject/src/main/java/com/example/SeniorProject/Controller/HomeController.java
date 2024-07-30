@@ -43,6 +43,12 @@ public class HomeController
         return "gallery";
     }
 
+    @GetMapping("displayInfo")
+    public String displayInfo()
+    {
+        return "displayInfo";
+    }
+
     @GetMapping("/healthcheck")
     public ResponseEntity<?> performHealthCheck()
     {

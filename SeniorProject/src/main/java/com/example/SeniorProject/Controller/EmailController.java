@@ -1,7 +1,9 @@
 package com.example.SeniorProject.Controller;
 
 import com.example.SeniorProject.Email.*;
+import com.example.SeniorProject.Model.*;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,6 +15,8 @@ import java.util.HashMap;
 public class EmailController
 {
     private final EmailService emailService;
+    @Autowired
+    private AccountRepository accountRepository;
 
     private HashMap<String,String> emailMap = new HashMap<>();
 
@@ -40,6 +44,16 @@ public class EmailController
         if (emailMap.containsKey(token)) {
             String email = emailMap.get(token);
             emailMap.remove(token); // Remove the token from the map after verification
+            Account account = accountRepository.findAccountByEmail(email);
+            if (account != null)
+            {
+                account.setVerified(true);
+                accountRepository.save(account);
+            }
+            else
+            {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Account not found");
+            }
             return ResponseEntity.ok("Email verified successfully for: " + email);
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid or expired token. Please try again.");
@@ -47,7 +61,8 @@ public class EmailController
     }
 
     @PostMapping("/sendVerificationEmail")
-    public String sendVerificationEmail(@RequestParam("email") String email, HttpServletRequest request) {
+    public String sendVerificationEmail(@RequestParam("email") String email, HttpServletRequest request)
+    {
         // Generating a verification token
         String token = generateVerificationToken(email);
         if(!emailMap.containsKey(token)){
@@ -59,7 +74,7 @@ public class EmailController
 
         // Constructing the verification URL with the token
 
-        String verificationUrl = "http://" + request.getServerName() + "/email/verify-email?token=" + token;
+        String verificationUrl = "https://" + request.getServerName() + ":" + request.getServerPort() + "/email/verify-email?token=" + token;
 
         // Creating the email details
         EmailDetails details = new EmailDetails();

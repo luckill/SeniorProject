@@ -23,10 +23,10 @@ public class AuthenticationController
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<Customer> register(@RequestBody RegisterUserDTO registerUserDTO)
+    public ResponseEntity<?> register(@RequestBody RegisterUserDTO registerUserDTO)
     {
-        Customer customer = authenticationService.signUp(registerUserDTO);
-        return ResponseEntity.ok(customer);
+        authenticationService.signUp(registerUserDTO);
+        return ResponseEntity.ok("User created successfully. We send a verification email to the email account you entered. Please follow the email's instruction to verify your email.Unverified account and customer profile will be deleted by the end of account's creation day");
     }
 
     @PostMapping("/login")

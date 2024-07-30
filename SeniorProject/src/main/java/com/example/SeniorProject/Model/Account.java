@@ -63,9 +63,15 @@ public class Account implements UserDetails
         return isAdmin;
     }
 
-    public void setAdmin(boolean admin) 
+    @NotNull
+    public boolean isVerified()
     {
-        isAdmin = admin;
+        return isVerified;
+    }
+
+    public void setVerified(@NotNull boolean verified)
+    {
+        isVerified = verified;
     }
 
     @Override
