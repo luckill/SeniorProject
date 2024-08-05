@@ -16,7 +16,7 @@ public class S3Service
 {
     private final S3Client s3Client;
 
-    public S3Service(@Value("${aws.accessKeyId}") String accessKeyId, @Value("${aws.secretKey}") String secretKey, CompressedImageService compressedImageService)
+    public S3Service(@Value("${aws.accessKeyId}") String accessKeyId, @Value("${aws.secretKey}") String secretKey)
     {
         AwsBasicCredentials awsBasicCredentials = AwsBasicCredentials.create(accessKeyId, secretKey);
         this.s3Client = S3Client.builder()
