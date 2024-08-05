@@ -45,6 +45,11 @@ jobs:
           echo "security.jwt.secret-key=${{ secrets.JWT_KEY }}" >> SeniorProject/src/main/resources/application.properties
           echo "security.jwt.expiration-time=${{ secrets.JWT_EXPIRATION_TIME }}" >> SeniorProject/src/main/resources/application.properties
           echo "server.port=5000" >> SeniorProject/src/main/resources/application.properties
+          echo "aws.accessKeyId=${{ secrets.AWS_ACCESS_KEY_ID }}" >> SeniorProject/src/main/resources/application.properties
+          echo "aws.secretKey=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> SeniorProject/src/main/resources/application.properties
+          echo "spring.servlet.multipart.max-file-size=50MB" >> SeniorProject/src/main/resources/application.properties
+          echo "spring.servlet.multipart.max-request-size=50MB" >> SeniorProject/src/main/resources/application.properties
+        
           cat SeniorProject/src/main/resources/application.properties
       - name: Navigate to app folder, clean and package Maven build
         run: |
