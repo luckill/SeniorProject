@@ -54,4 +54,10 @@ public class HomeController
     {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
+
+    @GetMapping("/upload")
+    public String upload()
+    {
+        return "uploadFile";
+    }
 }

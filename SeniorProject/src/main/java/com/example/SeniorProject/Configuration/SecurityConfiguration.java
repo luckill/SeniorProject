@@ -26,7 +26,7 @@ public class SecurityConfiguration
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests((authorization) -> authorization
-                .requestMatchers("/auth/**", "/email/**", "/signup", "/", "/login", "*.css", "*.js", "/picture/**.jpg", "/about", "/faq", "/displayInfo", "/gallery", "/healthcheck", "/forgetPassword").permitAll()
+                .requestMatchers("/auth/**", "/uploadFile", "upload", "/email/**", "/signup", "/", "/login", "*.css", "*.js", "/picture/**.jpg", "/about", "/faq", "/displayInfo", "/gallery", "/healthcheck", "/forgetPassword").permitAll()
                 .anyRequest().authenticated())
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
