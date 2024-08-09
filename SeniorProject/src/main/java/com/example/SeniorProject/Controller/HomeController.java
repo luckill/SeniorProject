@@ -25,6 +25,13 @@ public class HomeController
         return "signup";
     }
 
+    @GetMapping("/rentals")
+    public String rentals()
+    {
+        return "rentals";
+    }
+
+
     @GetMapping("/about")
     public String about()
     {
